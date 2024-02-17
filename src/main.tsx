@@ -6,7 +6,8 @@ import Root from './routes/root.tsx'
 import LandingRoute from './routes/landing.tsx'
 import ProductsRoute from './routes/products.tsx'
 import { MedusaProvider } from 'medusa-react'
-import { MEDUSA_BACKEND_URL, medusaClient, queryClient } from './utils/medusa.ts'
+import { MEDUSA_BACKEND_URL, medusaClient, queryClient } from './utils/medusa/medusa.ts'
+import ProductsProvider from "./utils/medusa/hooks.tsx";
 
 const router = createBrowserRouter([
   {
@@ -14,7 +15,7 @@ const router = createBrowserRouter([
     element: <Root />,
     children: [
       { path: '/', element: <LandingRoute /> },
-      { path: 'products', element: <ProductsRoute /> },
+      { path: 'products', element: <ProductsProvider><ProductsRoute /></ProductsProvider> },
     ],
   },
 ])

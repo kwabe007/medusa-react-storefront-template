@@ -1,7 +1,7 @@
-import notFound from '../assets/not-found-bg.jpg'
 import { PricedProduct } from '@medusajs/medusa/dist/types/pricing'
 import { formatVariantPrice, useRegion } from 'medusa-react'
 import { Link } from "react-router-dom";
+import { ProductImageOrFallback } from "./ProductImageOrFallback.tsx";
 
 interface ProductCardProps {
   product: PricedProduct
@@ -14,7 +14,7 @@ export default function ProductCard({ product }: ProductCardProps) {
   return (
     <section className="overflow-hidden bg-white rounded-lg shadow:md hover:shadow-lg w-80">
       <Link to={`/products/${product.id}`}>
-        <ImageOrPlaceholder
+        <ProductImageOrFallback
           className="w-80"
           src={product.thumbnail}
           alt={product.title ?? 'Product'}
@@ -32,22 +32,5 @@ export default function ProductCard({ product }: ProductCardProps) {
         </div>
       </Link>
     </section>
-  )
-}
-
-interface ImageOrPlaceholderProps {
-  src: string | null | undefined
-  alt: string
-  className?: string
-}
-
-function ImageOrPlaceholder({ src, alt, className }: ImageOrPlaceholderProps) {
-  if (src) {
-    return <img className={className} src={src} alt={alt} />
-  }
-  return (
-    <img className={className} src={notFound} alt={alt}>
-      <p>Not found</p>
-    </img>
   )
 }

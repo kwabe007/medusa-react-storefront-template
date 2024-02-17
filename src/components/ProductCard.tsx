@@ -1,7 +1,7 @@
-import { Link } from '@remix-run/react'
-import notFound from '~/assets/images/not-found-bg.jpg'
+import notFound from '../assets/not-found-bg.jpg'
 import { PricedProduct } from '@medusajs/medusa/dist/types/pricing'
 import { formatVariantPrice, useRegion } from 'medusa-react'
+import { Link } from "react-router-dom";
 
 interface ProductCardProps {
   product: PricedProduct
